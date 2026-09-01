@@ -1,258 +1,323 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Nishant Narsale — Applied Mechanics, Interfacial Fracture Mechanics, Computational Mechanics and Scientific Machine Learning.">
+<title>Nishant Narsale | Interfacial Fracture Mechanics</title>
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
 
-    <meta name="description"
-          content="Nishant Narsale — Applied Mechanics, Computational Mechanics, Interfacial Fracture Mechanics and Scientific Machine Learning">
+<style>
+:root{
+  --bg:#f7f8fa;--surface:#fff;--ink:#102033;--muted:#617080;
+  --navy:#123e67;--blue:#1c6097;--gold:#b88746;
+  --line:#dce4eb;--tint:#edf2f6;--shadow:0 18px 55px rgba(16,32,51,.09);
+}
+[data-theme="dark"]{
+  --bg:#0b121a;--surface:#111b25;--ink:#edf4f9;--muted:#aab7c3;
+  --navy:#82b7df;--blue:#78b8e8;--gold:#d5aa6d;--line:#293846;
+  --tint:#101923;--shadow:0 20px 60px rgba(0,0,0,.3);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"DM Sans",Arial,sans-serif;line-height:1.65}
+a{color:inherit;text-decoration:none}
+.container{width:min(1160px,92%);margin:auto}
+header{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--bg) 93%,transparent);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
+.nav{height:72px;display:flex;align-items:center;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:9px;font-weight:800;letter-spacing:.06em;color:var(--navy)}
+.brand-mark{width:42px;height:42px;border:1.5px solid var(--navy);border-radius:50%;display:grid;place-items:center;font-size:.7rem}
+nav{display:flex;gap:25px;color:var(--muted);font-size:.88rem;font-weight:700}
+nav a:hover{color:var(--blue)}
+.actions{display:flex;gap:8px}
+.icon{border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:9px;padding:8px 10px;cursor:pointer}
+.menu{display:none}
 
-    <meta name="keywords"
-          content="Nishant Narsale, Applied Mechanics, Fracture Mechanics, Thin Film Fracture, Cohesive Zone Modeling, Abaqus, PINN, FEA">
+.hero{padding:100px 0 75px;background:linear-gradient(135deg,var(--bg),var(--surface))}
+.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}
+.pill{display:inline-block;padding:7px 12px;border:1px solid var(--line);border-radius:999px;font-size:.7rem;font-weight:800;letter-spacing:.12em;color:var(--navy)}
+.eyebrow{font-size:.72rem;font-weight:900;letter-spacing:.16em;color:var(--blue);margin:20px 0 12px}
+h1,h2,h3{line-height:1.12}
+h1{font:700 clamp(4rem,8vw,7rem)/.88 "Playfair Display",Georgia,serif;letter-spacing:-.055em;margin:0 0 25px}
+h1 em{font-style:italic;color:var(--blue)}
+h2{font:700 clamp(2.2rem,4vw,3.7rem)/1.05 "Playfair Display",Georgia,serif;letter-spacing:-.035em;margin:0 0 15px}
+h3{margin:0 0 10px}
+.lead{font-size:1.12rem;color:var(--muted);max-width:650px}
+.hero-actions{display:flex;flex-wrap:wrap;gap:10px;margin:28px 0}
+.btn{display:inline-flex;align-items:center;gap:7px;padding:11px 16px;border:1px solid var(--line);border-radius:9px;background:var(--surface);font-weight:800}
+.btn.primary{background:var(--navy);color:#fff;border-color:var(--navy)}
+.stats{display:flex;gap:28px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:22px;margin-top:30px}
+.stats div{display:flex;flex-direction:column}.stats b{font-size:.96rem}.stats span{font-size:.77rem;color:var(--muted)}
 
-    <title>Nishant Narsale | Interfacial Fracture Mechanics</title>
+.logo-card{background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow);padding:28px;position:relative}
+.logo-card svg{display:block;width:100%;height:auto}
+.logo-caption{text-align:center;margin-top:12px;font-size:.68rem;letter-spacing:.2em;color:var(--muted);font-weight:800}
 
-    <link rel="stylesheet" href="styles.css">
+.statement{padding:62px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--surface)}
+.statement-grid{display:grid;grid-template-columns:70px 1.2fr .8fr;gap:30px;align-items:start}
+.number{font-weight:900;color:var(--blue);font-size:1.1rem}.statement p:last-child{color:var(--muted);margin:0}
+
+.section{padding:92px 0}.tinted{background:var(--tint)}
+.heading{display:grid;grid-template-columns:1fr .8fr;gap:45px;align-items:end;margin-bottom:38px}
+.heading>p{color:var(--muted);margin:0}
+.research-card{display:grid;grid-template-columns:1.02fr .98fr;background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow)}
+.research-visual{padding:25px;background:var(--tint);display:flex;align-items:center;justify-content:center;min-height:450px}
+.research-visual svg{width:100%;max-width:590px;height:auto}
+.research-content{padding:45px}
+.tag{font-size:.68rem;font-weight:900;letter-spacing:.16em;color:var(--blue)}
+.research-content h3{font:700 2.35rem/1.1 "Playfair Display",Georgia,serif;margin:15px 0}
+.research-content p{color:var(--muted)}
+.points{display:flex;flex-wrap:wrap;gap:8px;margin-top:25px}.points span{padding:6px 9px;background:var(--tint);border-radius:5px;font-size:.74rem;color:var(--muted)}
+
+.project-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.project{background:var(--surface);border:1px solid var(--line);padding:25px;min-height:285px;display:flex;flex-direction:column}
+.project-no{color:var(--blue);font-size:.7rem;font-weight:900;margin-bottom:35px}.project p{color:var(--muted);font-size:.92rem}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;padding-top:18px}.chips i{font-style:normal;background:var(--tint);padding:5px 8px;border-radius:5px;color:var(--muted);font-size:.7rem}
+.project-link{color:var(--blue);font-weight:800;font-size:.82rem;margin-top:15px}
+
+.timeline{border-left:1px solid var(--line)}
+.event{display:grid;grid-template-columns:100px 1fr;gap:28px;padding:5px 0 42px 28px;position:relative}
+.event:before{content:"";position:absolute;left:-5px;top:8px;width:9px;height:9px;background:var(--blue);border-radius:50%}
+.year{font-weight:900;color:var(--blue)}.event p{color:var(--muted)}.event small{color:#8997a5}
+
+.conf-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.conf{background:var(--surface);border:1px solid var(--line);padding:32px}.conf-type{font-size:.68rem;font-weight:900;letter-spacing:.15em;color:var(--blue)}.conf h3{font:700 1.7rem/1.15 "Playfair Display",Georgia,serif;margin-top:15px}.conf p{color:var(--muted)}.conf b{display:block;margin-top:22px}.conf span:last-child{font-size:.85rem;color:var(--muted)}
+
+.skills{display:grid;grid-template-columns:repeat(2,1fr);border-top:1px solid var(--line)}
+.skill{padding:25px;border-bottom:1px solid var(--line)}.skill:nth-child(odd){border-right:1px solid var(--line)}.skill p{color:var(--muted);margin:0}
+
+.contact{padding:82px 0;background:var(--navy);color:#fff}.contact-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:50px}.contact .eyebrow{color:#c8e0f3}.contact p{color:#d6e3ee}.contact-box{border:1px solid rgba(255,255,255,.25);padding:23px;display:grid;gap:13px}.contact-box a{font-weight:800}.contact-box a:hover{text-decoration:underline}
+footer{background:#0c2136;color:#c3d0dc;padding:22px 0;font-size:.8rem}.footer{display:flex;justify-content:space-between}
+
+@media(max-width:900px){
+  nav{display:none;position:absolute;top:72px;left:4%;right:4%;padding:18px;background:var(--surface);border:1px solid var(--line);flex-direction:column}
+  .nav-open nav{display:flex}.menu{display:block}.hero-grid,.research-card,.statement-grid,.heading,.contact-grid{grid-template-columns:1fr}.project-grid{grid-template-columns:1fr 1fr}.research-visual{min-height:350px}
+}
+@media(max-width:600px){
+  .hero{padding:70px 0}.project-grid,.conf-grid,.skills{grid-template-columns:1fr}.skill:nth-child(odd){border-right:0}.stats{gap:18px}.research-content{padding:30px}.event{grid-template-columns:1fr;gap:5px}.footer{flex-direction:column;gap:8px}
+}
+</style>
 </head>
-
 
 <body>
 
+<header>
+  <div class="container nav">
+    <a class="brand" href="#home" aria-label="Interfacial Fracture Mechanics">
+      <span class="brand-mark">IFM</span>
+    </a>
 
-<!-- =========================================================
-     NAVIGATION
-========================================================= -->
+    <nav id="nav">
+      <a href="#research">Research</a>
+      <a href="#projects">Projects</a>
+      <a href="#workshops">Workshops</a>
+      <a href="#conferences">Conferences</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </nav>
 
-<header class="site-header">
-
-    <div class="container nav-wrap">
-
-        <a class="brand" href="#home">
-            IFM
-        </a>
-
-        <nav id="nav">
-
-            <a href="#research">
-                Research
-            </a>
-
-            <a href="#projects">
-                Projects
-            </a>
-
-            <a href="#workshops">
-                Workshops
-            </a>
-
-            <a href="#conferences">
-                Conferences
-            </a>
-
-            <a href="#skills">
-                Skills
-            </a>
-
-            <a href="#contact">
-                Contact
-            </a>
-
-        </nav>
-
-
-        <div class="nav-actions">
-
-            <button
-                id="themeToggle"
-                class="icon-btn"
-                aria-label="Toggle dark mode">
-
-                ◐
-
-            </button>
-
-
-            <button
-                id="menuToggle"
-                class="icon-btn menu-btn"
-                aria-label="Open menu">
-
-                ☰
-
-            </button>
-
-        </div>
-
+    <div class="actions">
+      <button class="icon" id="theme" aria-label="Toggle dark mode">◐</button>
+      <button class="icon menu" id="menu" aria-label="Open menu">☰</button>
     </div>
-
+  </div>
 </header>
 
 
-
-<!-- =========================================================
-     HERO SECTION
-========================================================= -->
-
 <main id="home">
 
+<!-- =========================================================
+     HERO
+========================================================= -->
 
 <section class="hero">
 
-    <div class="container hero-grid">
-
-
-        <!-- LEFT SIDE -->
-
-        <div class="hero-copy">
-
-            <div class="institution-pill">
-
-                IIT MADRAS · APPLIED MECHANICS
-
-            </div>
-
-
-            <p class="eyebrow">
-
-                RESEARCH · COMPUTATIONAL MECHANICS · SCIENTIFIC ML
-
-            </p>
-
-
-            <h1>
-
-                Nishant<br>
-
-                <em>Narsale</em>
-
-            </h1>
-
-
-            <p class="lead">
-
-                MS Research Scholar in Applied Mechanics working at the
-                intersection of
-
-                <strong>
-                    fracture mechanics, finite element analysis,
-                    cohesive-zone modeling, curvature-driven mechanics,
-                    and physics-informed machine learning.
-                </strong>
-
-            </p>
-
-
-            <div class="hero-actions">
-
-                <a
-                    class="btn primary"
-                    href="#research">
-
-                    Explore my research →
-
-                </a>
-
-
-                <a
-                    class="btn"
-                    href="assets/Nishant_Narsale_CV.pdf"
-                    download>
-
-                    Download CV ↓
-
-                </a>
-
-
-                <a
-                    class="btn"
-                    href="https://github.com/NishantN-IITM"
-                    target="_blank"
-                    rel="noreferrer">
-
-                    GitHub ↗
-
-                </a>
-
-            </div>
-
-
-
-            <!-- RESEARCH TOOLKIT -->
-
-            <div class="stats">
-
-
-                <div>
-
-                    <b>FEA</b>
-
-                    <span>
-                        Abaqus
-                    </span>
-
-                </div>
-
-
-                <div>
-
-                    <b>CZM</b>
-
-                    <span>
-                        Fracture
-                    </span>
-
-                </div>
-
-
-                <div>
-
-                    <b>PINNs</b>
-
-                    <span>
-                        PyTorch
-                    </span>
-
-                </div>
-
-
-                <div>
-
-                    <b>MATLAB</b>
-
-                    <span>
-                        Imaging
-                    </span>
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-
-        <!-- RIGHT SIDE : IFM LOGO -->
-
-        <div class="hero-visual">
-
-            <div class="logo-frame">
-
-                <img
-                    src="assets/interfacial-fracture-mechanics-logo.png"
-                    alt="Interfacial Fracture Mechanics">
-
-            </div>
-
-        </div>
-
+  <div class="container hero-grid">
+
+    <div>
+
+      <span class="pill">
+        IIT MADRAS · APPLIED MECHANICS
+      </span>
+
+      <p class="eyebrow">
+        RESEARCH · COMPUTATIONAL MECHANICS · SCIENTIFIC ML
+      </p>
+
+      <h1>
+        Nishant<br>
+        <em>Narsale</em>
+      </h1>
+
+      <p class="lead">
+        MS Research Scholar in Applied Mechanics working at the
+        intersection of <strong>interfacial fracture mechanics,
+        finite element analysis, cohesive-zone modeling,
+        curvature studies, and physics-informed machine learning.</strong>
+      </p>
+
+      <div class="hero-actions">
+        <a class="btn primary" href="#research">
+          Explore my research →
+        </a>
+
+        <a class="btn" href="assets/Nishant_Narsale_CV.pdf" download>
+          Download CV ↓
+        </a>
+
+        <a class="btn" href="https://github.com/NishantN-IITM"
+           target="_blank" rel="noreferrer">
+          GitHub ↗
+        </a>
+      </div>
+
+      <div class="stats">
+        <div><b>FEA</b><span>Abaqus</span></div>
+        <div><b>CZM</b><span>Fracture</span></div>
+        <div><b>PINNs</b><span>PyTorch</span></div>
+        <div><b>MATLAB</b><span>Imaging</span></div>
+      </div>
 
     </div>
 
-</section>
 
+    <!-- =====================================================
+         IFM LOGO
+    ====================================================== -->
+
+    <div class="logo-card">
+
+      <svg viewBox="0 0 560 500"
+           role="img"
+           aria-label="Interfacial Fracture Mechanics logo">
+
+        <defs>
+          <linearGradient id="filmGradient" x1="0" x2="1">
+            <stop offset="0" stop-color="#123e67"/>
+            <stop offset="1" stop-color="#2d79ac"/>
+          </linearGradient>
+
+          <linearGradient id="metalGradient" x1="0" x2="1">
+            <stop offset="0" stop-color="#aeb9c2"/>
+            <stop offset=".5" stop-color="#eef2f4"/>
+            <stop offset="1" stop-color="#87939e"/>
+          </linearGradient>
+        </defs>
+
+        <!-- Curved flexible film -->
+        <path d="M112 225
+                 C150 125 245 75 365 115
+                 C414 131 449 163 465 203
+                 L435 217
+                 C416 182 381 161 340 153
+                 C245 136 178 170 145 246 Z"
+              fill="url(#filmGradient)"/>
+
+        <!-- Interface -->
+        <path d="M112 225
+                 C158 189 207 181 260 192
+                 C314 204 364 227 435 217"
+              fill="none"
+              stroke="#d9e1e7"
+              stroke-width="8"/>
+
+        <!-- Crack/debonding path -->
+        <path d="M116 229
+                 C167 193 207 190 256 201
+                 C307 213 360 238 430 221"
+              fill="none"
+              stroke="#102033"
+              stroke-width="3"
+              stroke-dasharray="7 6"/>
+
+        <!-- Curved substrate -->
+        <path d="M92 250
+                 C154 214 221 215 280 230
+                 C345 246 396 267 464 245
+                 L476 302
+                 C399 325 344 305 276 289
+                 C209 274 150 275 99 306 Z"
+              fill="url(#metalGradient)"
+              stroke="#7d8994"
+              stroke-width="2"/>
+
+        <!-- Semiconductor die -->
+        <rect x="238" y="243" width="104" height="44"
+              rx="5" fill="#152d47"/>
+
+        <!-- Package traces -->
+        <g stroke="#c8a15c" stroke-width="2" fill="none">
+          <path d="M248 253 H226 M248 263 H217 M248 273 H231"/>
+          <path d="M332 253 H353 M332 263 H366 M332 273 H351"/>
+        </g>
+
+        <!-- Die -->
+        <rect x="258" y="250" width="65" height="30"
+              rx="3" fill="#244e73"/>
+
+        <!-- Small curvature arrows -->
+        <path d="M150 335
+                 C205 366 295 372 383 335"
+              fill="none"
+              stroke="#1c6097"
+              stroke-width="2"/>
+
+        <path d="M180 350 l-15 -2 l7 -12"
+              fill="none"
+              stroke="#1c6097"
+              stroke-width="2"/>
+
+        <path d="M355 350 l15 -2 l-7 -12"
+              fill="none"
+              stroke="#1c6097"
+              stroke-width="2"/>
+
+        <!-- IFM -->
+        <text x="280" y="410"
+              text-anchor="middle"
+              font-family="Georgia, serif"
+              font-size="76"
+              font-weight="700"
+              fill="#123e67">
+          IFM
+        </text>
+
+        <line x1="95" y1="427" x2="465" y2="427"
+              stroke="#aeb8c1"/>
+
+        <text x="280" y="452"
+              text-anchor="middle"
+              font-family="Arial, sans-serif"
+              font-size="18"
+              font-weight="700"
+              letter-spacing="7"
+              fill="#4f6070">
+          INTERFACIAL FRACTURE
+        </text>
+
+        <text x="280" y="477"
+              text-anchor="middle"
+              font-family="Arial, sans-serif"
+              font-size="16"
+              letter-spacing="5"
+              fill="#4f6070">
+          MECHANICS
+        </text>
+
+      </svg>
+
+      <div class="logo-caption">
+        UNDERSTAND · MODEL · PREDICT
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
 
 
 <!-- =========================================================
@@ -261,1294 +326,998 @@
 
 <section class="statement">
 
-    <div class="container statement-grid">
+  <div class="container statement-grid">
 
+    <span class="number">01</span>
 
-        <span class="section-number">
+    <div>
+      <p class="eyebrow">RESEARCH APPROACH</p>
 
-            01
-
-        </span>
-
-
-        <div>
-
-            <p class="eyebrow">
-
-                RESEARCH APPROACH
-
-            </p>
-
-
-            <h2>
-
-                Mechanics-informed computation
-                for real engineering problems.
-
-            </h2>
-
-        </div>
-
-
-        <p>
-
-            I combine experimental investigation,
-            nonlinear finite element modeling,
-            cohesive-zone formulations,
-            curvature studies and scientific machine learning
-            to understand complex material and interface behavior.
-
-        </p>
-
-
+      <h2>
+        Mechanics-informed computation
+        for real engineering problems.
+      </h2>
     </div>
+
+    <p>
+      I combine experimental investigation, nonlinear finite element
+      modeling, cohesive-zone formulations, curvature studies and
+      scientific machine learning to understand complex material
+      and interface behavior.
+    </p>
+
+  </div>
 
 </section>
 
 
-
 <!-- =========================================================
-     RESEARCH SECTION
+     RESEARCH
 ========================================================= -->
 
-<section
-    id="research"
-    class="section">
+<section id="research" class="section">
+
+  <div class="container">
+
+    <div class="heading">
+
+      <div>
+        <p class="eyebrow">02 / RESEARCH</p>
+
+        <h2>
+          Interfacial Fracture Mechanics
+        </h2>
+      </div>
+
+      <p>
+        Studying thin-film adhesion, interfacial debonding,
+        peeling and curvature-dependent fracture behavior.
+      </p>
+
+    </div>
 
 
-    <div class="container">
+    <article class="research-card">
 
 
-        <div class="section-heading">
+      <!-- ===================================================
+           CURVED PEELING + SEMICONDUCTOR VISUAL
+      ==================================================== -->
+
+      <div class="research-visual">
+
+        <svg viewBox="0 0 650 510"
+             role="img"
+             aria-label="Curved flexible thin film peeling from a semiconductor package">
+
+          <defs>
+
+            <linearGradient id="rfilm" x1="0" x2="1">
+              <stop offset="0" stop-color="#173f66"/>
+              <stop offset=".55" stop-color="#2c78aa"/>
+              <stop offset="1" stop-color="#0e3558"/>
+            </linearGradient>
+
+            <linearGradient id="rsubstrate" x1="0" x2="1">
+              <stop offset="0" stop-color="#7e8b96"/>
+              <stop offset=".5" stop-color="#e5eaed"/>
+              <stop offset="1" stop-color="#7a8792"/>
+            </linearGradient>
+
+            <filter id="softShadow">
+              <feDropShadow dx="0" dy="8" stdDeviation="9"
+                            flood-opacity=".16"/>
+            </filter>
+
+          </defs>
 
 
-            <div>
+          <!-- Curved package substrate -->
 
-                <p class="eyebrow">
-
-                    01 / RESEARCH
-
-                </p>
-
-
-                <h2>
-
-                    Interfacial Fracture Mechanics
-
-                </h2>
-
-            </div>
+          <path d="M80 315
+                   C135 255 215 238 300 258
+                   C392 280 460 321 565 292
+                   L580 370
+                   C473 399 395 356 299 337
+                   C210 319 139 333 88 380 Z"
+                fill="url(#rsubstrate)"
+                stroke="#697783"
+                stroke-width="2"
+                filter="url(#softShadow)"/>
 
 
-            <p>
+          <!-- Semiconductor package -->
 
-                Studying thin-film adhesion, interfacial
-                debonding, peeling and curvature-dependent
-                fracture behavior.
+          <path d="M190 275
+                   C225 255 270 253 312 262
+                   L425 294
+                   C443 300 448 317 432 327
+                   L341 352
+                   C320 358 293 354 268 347
+                   L184 322
+                   C166 316 169 290 190 275 Z"
+                fill="#172d45"/>
 
-            </p>
 
+          <!-- Semiconductor die -->
+
+          <rect x="244" y="283"
+                width="118"
+                height="55"
+                rx="6"
+                fill="#315d83"
+                stroke="#8da4b7"
+                stroke-width="2"/>
+
+
+          <!-- Die surface -->
+
+          <rect x="260" y="292"
+                width="86"
+                height="37"
+                rx="3"
+                fill="#203f5d"/>
+
+
+          <!-- Electrical traces -->
+
+          <g fill="none"
+             stroke="#c8a15c"
+             stroke-width="2">
+
+            <path d="M260 298 H221 L199 285"/>
+            <path d="M260 308 H211 L188 298"/>
+            <path d="M260 318 H216 L194 315"/>
+
+            <path d="M346 298 H383 L412 284"/>
+            <path d="M346 308 H394 L426 298"/>
+            <path d="M346 318 H388 L418 315"/>
+
+          </g>
+
+
+          <!-- Underfill / interface -->
+
+          <path d="M170 267
+                   C221 245 272 247 320 259
+                   C371 271 414 291 454 286"
+                fill="none"
+                stroke="#d4a766"
+                stroke-width="10"
+                opacity=".8"/>
+
+
+          <!-- Peeling flexible film -->
+
+          <path d="M113 271
+                   C144 222 174 171 232 142
+                   C295 110 368 112 423 144
+                   C469 171 491 209 485 239
+                   C480 266 454 279 431 271
+                   C446 244 440 218 414 198
+                   C375 168 314 164 263 185
+                   C211 207 177 252 156 299 Z"
+                fill="url(#rfilm)"
+                stroke="#0f3559"
+                stroke-width="2"
+                filter="url(#softShadow)"/>
+
+
+          <!-- Thin-film highlight -->
+
+          <path d="M135 269
+                   C165 220 194 180 239 157
+                   C298 127 359 130 409 155"
+                fill="none"
+                stroke="#d9e9f4"
+                stroke-width="4"
+                opacity=".7"/>
+
+
+          <!-- Interfacial crack -->
+
+          <path d="M112 276
+                   C166 244 211 235 264 246
+                   C319 257 368 286 431 271"
+                fill="none"
+                stroke="#142638"
+                stroke-width="4"
+                stroke-dasharray="9 7"/>
+
+
+          <!-- Crack front -->
+
+          <circle cx="264" cy="246" r="7"
+                  fill="#b88746"/>
+
+          <line x1="264" y1="246"
+                x2="264" y2="208"
+                stroke="#b88746"
+                stroke-width="2"/>
+
+          <text x="264" y="195"
+                text-anchor="middle"
+                font-family="Arial"
+                font-size="15"
+                font-weight="700"
+                fill="#8a673b">
+            CRACK FRONT
+          </text>
+
+
+          <!-- Curvature annotation -->
+
+          <path d="M115 404
+                   C220 449 388 449 520 391"
+                fill="none"
+                stroke="#1c6097"
+                stroke-width="2"/>
+
+          <path d="M145 414 l-17 -3 l8 -13"
+                fill="none"
+                stroke="#1c6097"
+                stroke-width="2"/>
+
+          <path d="M488 408 l17 -4 l-7 -13"
+                fill="none"
+                stroke="#1c6097"
+                stroke-width="2"/>
+
+          <text x="330" y="442"
+                text-anchor="middle"
+                font-family="Arial"
+                font-size="16"
+                font-weight="700"
+                fill="#1c6097">
+            CURVATURE / BENDING
+          </text>
+
+
+          <!-- Labels -->
+
+          <g font-family="Arial"
+             font-size="14"
+             fill="#33485b">
+
+            <text x="465" y="137">Flexible thin film</text>
+            <line x1="456" y1="141" x2="420" y2="161"
+                  stroke="#607180"/>
+
+            <text x="470" y="233">Debonding interface</text>
+            <line x1="459" y1="237" x2="423" y2="263"
+                  stroke="#607180"/>
+
+            <text x="445" y="337">Semiconductor package</text>
+            <line x1="440" y1="331" x2="396" y2="318"
+                  stroke="#607180"/>
+
+            <text x="102" y="374">Curved substrate</text>
+            <line x1="188" y1="370" x2="210" y2="354"
+                  stroke="#607180"/>
+
+          </g>
+
+
+          <!-- Peel direction -->
+
+          <path d="M105 272 C88 248 89 220 105 198"
+                fill="none"
+                stroke="#1c6097"
+                stroke-width="3"/>
+
+          <path d="M105 198 l-7 14 l15 -2"
+                fill="none"
+                stroke="#1c6097"
+                stroke-width="3"/>
+
+          <text x="45" y="185"
+                font-family="Arial"
+                font-size="14"
+                font-weight="700"
+                fill="#1c6097">
+            PEELING
+          </text>
+
+        </svg>
+
+      </div>
+
+
+      <!-- RESEARCH TEXT -->
+
+      <div class="research-content">
+
+        <span class="tag">
+          PRIMARY RESEARCH
+        </span>
+
+        <h3>
+          Thin-Film Fracture
+          & Curvature Studies
+        </h3>
+
+        <p>
+          My research focuses on understanding thin films and
+          interfaces under peeling, bending and curvature-driven
+          loading.
+        </p>
+
+        <p>
+          The work combines experimental characterization with
+          nonlinear finite element analysis and cohesive-zone
+          modeling to investigate interfacial crack initiation,
+          propagation and damage evolution.
+        </p>
+
+        <div class="points">
+
+          <span>90° Peel Mechanics</span>
+          <span>Thin-Film Fracture</span>
+          <span>Curvature Effects</span>
+          <span>Cohesive-Zone Modeling</span>
+          <span>Crack Propagation</span>
+          <span>Flexible Electronics</span>
+          <span>Semiconductor Packaging</span>
+          <span>Interface Reliability</span>
 
         </div>
 
+      </div>
 
+    </article>
 
-        <!-- MAIN RESEARCH CARD -->
-
-        <article class="research-feature">
-
-
-            <!-- RESEARCH VISUAL -->
-
-            <div class="research-image">
-
-                <img
-                    src="assets/research/curved-peeling-semiconductor.png"
-                    alt="Curved flexible thin film peeling from a semiconductor package substrate">
-
-                <div class="research-overlay">
-
-                    <span>
-                        INTERFACIAL FRACTURE
-                    </span>
-
-                    <strong>
-                        Curvature · Peeling · Debonding
-                    </strong>
-
-                </div>
-
-            </div>
-
-
-
-            <!-- RESEARCH DESCRIPTION -->
-
-            <div class="research-content">
-
-
-                <span class="tag">
-
-                    PRIMARY RESEARCH
-
-                </span>
-
-
-                <h3>
-
-                    Thin-Film Fracture
-                    & Curvature Studies
-
-                </h3>
-
-
-                <p>
-
-                    My research focuses on understanding the
-                    mechanics of thin films and interfaces under
-                    peeling, bending and curvature-driven loading.
-
-                </p>
-
-
-                <p>
-
-                    The work combines experimental characterization
-                    with nonlinear finite element analysis and
-                    cohesive-zone modeling to investigate
-                    interfacial crack initiation, propagation and
-                    damage evolution.
-
-                </p>
-
-
-
-                <!-- RESEARCH AREAS -->
-
-                <div class="research-points">
-
-
-                    <span>
-                        90° Peel Mechanics
-                    </span>
-
-
-                    <span>
-                        Thin-Film Fracture
-                    </span>
-
-
-                    <span>
-                        Curvature Effects
-                    </span>
-
-
-                    <span>
-                        Cohesive-Zone Modeling
-                    </span>
-
-
-                    <span>
-                        Crack Propagation
-                    </span>
-
-
-                    <span>
-                        Semiconductor Packaging
-                    </span>
-
-
-                    <span>
-                        Flexible Electronics
-                    </span>
-
-
-                </div>
-
-            </div>
-
-        </article>
-
-    </div>
+  </div>
 
 </section>
 
 
-
 <!-- =========================================================
-     RESEARCH MOTIVATION
+     RESEARCH THEMES
 ========================================================= -->
 
 <section class="section tinted">
 
-
-    <div class="container">
-
-
-        <div class="section-heading">
-
-            <div>
-
-                <p class="eyebrow">
-
-                    02 / RESEARCH MOTIVATION
-
-                </p>
-
-
-                <h2>
-
-                    Curvature meets interface mechanics.
-
-                </h2>
-
-            </div>
-
-
-            <p>
-
-                Curved and flexible structures introduce
-                additional deformation mechanisms that influence
-                interfacial stresses and fracture behavior.
-
-            </p>
-
-        </div>
-
-
-
-        <div class="project-grid">
-
-
-            <article class="project-card">
-
-                <span>
-                    01
-                </span>
-
-
-                <h3>
-                    Curvature
-                </h3>
-
-
-                <p>
-
-                    Studying how substrate and film curvature
-                    influence deformation, interface stresses
-                    and debonding behavior.
-
-                </p>
-
-
-                <div class="chips">
-
-                    <i>
-                        Bending
-                    </i>
-
-                    <i>
-                        Curvature
-                    </i>
-
-                    <i>
-                        Thin Films
-                    </i>
-
-                </div>
-
-            </article>
-
-
-
-            <article class="project-card">
-
-                <span>
-                    02
-                </span>
-
-
-                <h3>
-                    Interfacial Fracture
-                </h3>
-
-
-                <p>
-
-                    Understanding crack initiation and
-                    propagation using traction–separation
-                    relationships and cohesive-zone models.
-
-                </p>
-
-
-                <div class="chips">
-
-                    <i>
-                        CZM
-                    </i>
-
-                    <i>
-                        Damage
-                    </i>
-
-                    <i>
-                        Fracture
-                    </i>
-
-                </div>
-
-            </article>
-
-
-
-            <article class="project-card">
-
-                <span>
-                    03
-                </span>
-
-
-                <h3>
-                    Semiconductor Packaging
-                </h3>
-
-
-                <p>
-
-                    Interface mechanics of layered structures
-                    relevant to semiconductor packaging,
-                    flexible electronics and reliability.
-
-                </p>
-
-
-                <div class="chips">
-
-                    <i>
-                        Packaging
-                    </i>
-
-                    <i>
-                        Reliability
-                    </i>
-
-                    <i>
-                        Interfaces
-                    </i>
-
-                </div>
-
-            </article>
-
-
-        </div>
+  <div class="container">
+
+    <div class="heading">
+
+      <div>
+        <p class="eyebrow">03 / RESEARCH THEMES</p>
+
+        <h2>
+          Curvature meets interface mechanics.
+        </h2>
+      </div>
+
+      <p>
+        Curved and flexible structures introduce additional
+        deformation mechanisms that influence interfacial
+        stresses and fracture behavior.
+      </p>
 
     </div>
 
-</section>
 
+    <div class="project-grid">
+
+      <article class="project">
+
+        <span class="project-no">01</span>
+
+        <h3>
+          Curvature
+        </h3>
+
+        <p>
+          Studying how film and substrate curvature influence
+          deformation, interface stresses and debonding behavior.
+        </p>
+
+        <div class="chips">
+          <i>Bending</i>
+          <i>Curvature</i>
+          <i>Thin Films</i>
+        </div>
+
+      </article>
+
+
+      <article class="project">
+
+        <span class="project-no">02</span>
+
+        <h3>
+          Interfacial Fracture
+        </h3>
+
+        <p>
+          Understanding crack initiation and propagation through
+          traction–separation relationships and cohesive-zone models.
+        </p>
+
+        <div class="chips">
+          <i>CZM</i>
+          <i>Damage</i>
+          <i>Fracture</i>
+        </div>
+
+      </article>
+
+
+      <article class="project">
+
+        <span class="project-no">03</span>
+
+        <h3>
+          Semiconductor Packaging
+        </h3>
+
+        <p>
+          Interface mechanics of layered structures relevant to
+          semiconductor packaging, flexible electronics and reliability.
+        </p>
+
+        <div class="chips">
+          <i>Packaging</i>
+          <i>Reliability</i>
+          <i>Interfaces</i>
+        </div>
+
+      </article>
+
+    </div>
+
+  </div>
+
+</section>
 
 
 <!-- =========================================================
      PROJECTS
 ========================================================= -->
 
-<section
-    id="projects"
-    class="section">
+<section id="projects" class="section">
 
+  <div class="container">
 
-    <div class="container">
+    <div class="heading">
 
+      <div>
+        <p class="eyebrow">04 / PROJECTS</p>
 
-        <div class="section-heading">
+        <h2>
+          Technical Projects
+        </h2>
+      </div>
 
-
-            <div>
-
-                <p class="eyebrow">
-
-                    03 / PROJECTS
-
-                </p>
-
-
-                <h2>
-
-                    Technical Projects
-
-                </h2>
-
-            </div>
-
-
-            <p>
-
-                Computational and experimental projects
-                connecting mechanics, simulation and
-                machine learning.
-
-            </p>
-
-        </div>
-
-
-
-        <div class="project-grid">
-
-
-            <!-- PROJECT 01 -->
-
-            <article class="project-card">
-
-                <span>
-                    01
-                </span>
-
-
-                <h3>
-
-                    90° Peel Test — Abaqus CZM
-
-                </h3>
-
-
-                <p>
-
-                    Nonlinear finite element study of thin-film
-                    peeling with cohesive-zone modeling,
-                    interaction definitions and parameter
-                    sensitivity studies.
-
-                </p>
-
-
-                <div class="chips">
-
-                    <i>
-                        Abaqus
-                    </i>
-
-                    <i>
-                        CZM
-                    </i>
-
-                    <i>
-                        FEA
-                    </i>
-
-                </div>
-
-            </article>
-
-
-
-            <!-- PROJECT 02 -->
-
-            <article class="project-card">
-
-                <span>
-                    02
-                </span>
-
-
-                <h3>
-
-                    Neural Network vs PINN
-
-                </h3>
-
-
-                <p>
-
-                    PyTorch comparison of a conventional neural
-                    network and a physics-informed neural network
-                    for the viscous Burgers' equation.
-
-                </p>
-
-
-                <div class="chips">
-
-                    <i>
-                        Python
-                    </i>
-
-                    <i>
-                        PyTorch
-                    </i>
-
-                    <i>
-                        PINN
-                    </i>
-
-                </div>
-
-
-                <a
-                    href="https://github.com/NishantN-IITM/Neural-Networks-vs-Physics-Informed-Neural-Networks-PINN-for-Burgers-Equation"
-                    target="_blank"
-                    rel="noreferrer">
-
-                    Repository ↗
-
-                </a>
-
-            </article>
-
-
-
-            <!-- PROJECT 03 -->
-
-            <article class="project-card">
-
-                <span>
-                    03
-                </span>
-
-
-                <h3>
-
-                    Cohesive Zone Model Visualizer
-
-                </h3>
-
-
-                <p>
-
-                    Python-based simulator comparing irreversible
-                    cyclic traction–separation behavior for
-                    exponential, bilinear and trapezoidal
-                    cohesive laws.
-
-                </p>
-
-
-                <div class="chips">
-
-                    <i>
-                        Python
-                    </i>
-
-                    <i>
-                        Matplotlib
-                    </i>
-
-                    <i>
-                        CZM
-                    </i>
-
-                </div>
-
-
-                <a
-                    href="https://github.com/NishantN-IITM/Traction-Separation-Laws"
-                    target="_blank"
-                    rel="noreferrer">
-
-                    Repository ↗
-
-                </a>
-
-            </article>
-
-
-
-            <!-- PROJECT 04 -->
-
-            <article class="project-card">
-
-                <span>
-                    04
-                </span>
-
-
-                <h3>
-
-                    Camera Calibration
-                    & Image Analysis
-
-                </h3>
-
-
-                <p>
-
-                    MATLAB workflow using checkerboard patterns,
-                    experimental video frame extraction and
-                    camera calibration for image-based measurement.
-
-                </p>
-
-
-                <div class="chips">
-
-                    <i>
-                        MATLAB
-                    </i>
-
-                    <i>
-                        Computer Vision
-                    </i>
-
-                </div>
-
-            </article>
-
-
-
-            <!-- PROJECT 05 -->
-
-            <article class="project-card">
-
-                <span>
-                    05
-                </span>
-
-
-                <h3>
-
-                    Hyperelastic
-                    Finite-Deformation Analysis
-
-                </h3>
-
-
-                <p>
-
-                    Python/Jupyter implementation exploring
-                    deformation gradients, stress and strain
-                    measures and Neo-Hookean hyperelastic response.
-
-                </p>
-
-
-                <div class="chips">
-
-                    <i>
-                        Python
-                    </i>
-
-                    <i>
-                        Hyperelasticity
-                    </i>
-
-                </div>
-
-            </article>
-
-
-
-            <!-- PROJECT 06 -->
-
-            <article class="project-card">
-
-                <span>
-                    06
-                </span>
-
-
-                <h3>
-
-                    Custom Peel-Test Fixtures
-
-                </h3>
-
-
-                <p>
-
-                    Designed experimental fixtures and substrates
-                    in SolidWorks for displacement-controlled
-                    peeling and interface studies.
-
-                </p>
-
-
-                <div class="chips">
-
-                    <i>
-                        SolidWorks
-                    </i>
-
-                    <i>
-                        Experiment
-                    </i>
-
-                </div>
-
-            </article>
-
-
-        </div>
+      <p>
+        Computational and experimental projects connecting
+        mechanics, simulation and machine learning.
+      </p>
 
     </div>
 
-</section>
 
+    <div class="project-grid">
+
+
+      <article class="project">
+
+        <span class="project-no">01</span>
+
+        <h3>
+          90° Peel Test — Abaqus CZM
+        </h3>
+
+        <p>
+          Nonlinear finite element study of thin-film peeling
+          involving cohesive parameters, interactions,
+          boundary conditions and sensitivity studies.
+        </p>
+
+        <div class="chips">
+          <i>Abaqus</i>
+          <i>CZM</i>
+          <i>FEA</i>
+        </div>
+
+      </article>
+
+
+      <article class="project">
+
+        <span class="project-no">02</span>
+
+        <h3>
+          Neural Network vs PINN
+        </h3>
+
+        <p>
+          PyTorch comparison of a conventional neural network
+          and a physics-informed neural network for the viscous
+          Burgers' equation.
+        </p>
+
+        <div class="chips">
+          <i>Python</i>
+          <i>PyTorch</i>
+          <i>PINN</i>
+        </div>
+
+        <a class="project-link"
+           href="https://github.com/NishantN-IITM/Neural-Networks-vs-Physics-Informed-Neural-Networks-PINN-for-Burgers-Equation"
+           target="_blank" rel="noreferrer">
+          Repository ↗
+        </a>
+
+      </article>
+
+
+      <article class="project">
+
+        <span class="project-no">03</span>
+
+        <h3>
+          Cohesive Zone Model Visualizer
+        </h3>
+
+        <p>
+          Python simulator comparing irreversible cyclic
+          traction–separation behavior for exponential,
+          bilinear and trapezoidal cohesive laws.
+        </p>
+
+        <div class="chips">
+          <i>Python</i>
+          <i>Matplotlib</i>
+          <i>CZM</i>
+        </div>
+
+        <a class="project-link"
+           href="https://github.com/NishantN-IITM/Traction-Separation-Laws"
+           target="_blank" rel="noreferrer">
+          Repository ↗
+        </a>
+
+      </article>
+
+
+      <article class="project">
+
+        <span class="project-no">04</span>
+
+        <h3>
+          Camera Calibration & Image Analysis
+        </h3>
+
+        <p>
+          MATLAB workflow using checkerboard patterns,
+          experimental video frame extraction and camera
+          calibration for image-based measurement.
+        </p>
+
+        <div class="chips">
+          <i>MATLAB</i>
+          <i>Computer Vision</i>
+        </div>
+
+      </article>
+
+
+      <article class="project">
+
+        <span class="project-no">05</span>
+
+        <h3>
+          Hyperelastic Finite-Deformation Analysis
+        </h3>
+
+        <p>
+          Python/Jupyter implementation exploring deformation
+          gradients, stress and strain measures and
+          Neo-Hookean hyperelastic response.
+        </p>
+
+        <div class="chips">
+          <i>Python</i>
+          <i>Hyperelasticity</i>
+        </div>
+
+      </article>
+
+
+      <article class="project">
+
+        <span class="project-no">06</span>
+
+        <h3>
+          Custom Peel-Test Fixtures
+        </h3>
+
+        <p>
+          Designed experimental fixtures and substrates in
+          SolidWorks for displacement-controlled peeling
+          and interface studies.
+        </p>
+
+        <div class="chips">
+          <i>SolidWorks</i>
+          <i>Experiment</i>
+        </div>
+
+      </article>
+
+
+    </div>
+
+  </div>
+
+</section>
 
 
 <!-- =========================================================
      WORKSHOPS
 ========================================================= -->
 
-<section
-    id="workshops"
-    class="section">
+<section id="workshops" class="section tinted">
 
+  <div class="container">
 
-    <div class="container narrow">
+    <div class="heading">
 
+      <div>
+        <p class="eyebrow">05 / LEARNING</p>
+        <h2>Workshops</h2>
+      </div>
 
-        <div class="section-heading">
-
-
-            <div>
-
-                <p class="eyebrow">
-
-                    04 / LEARNING
-
-                </p>
-
-
-                <h2>
-
-                    Workshops
-
-                </h2>
-
-            </div>
-
-
-            <p>
-
-                Technical workshops and hands-on learning
-                experiences.
-
-            </p>
-
-        </div>
-
-
-
-        <div class="timeline">
-
-
-            <article>
-
-                <div class="year">
-                    2026
-                </div>
-
-
-                <div>
-
-                    <h3>
-
-                        Physics-Informed Neural
-                        Networks Workshop
-
-                    </h3>
-
-
-                    <p>
-
-                        Hands-on work with neural networks,
-                        PINNs, automatic differentiation,
-                        sparse-data learning and PDE-constrained
-                        training using Python and Jupyter.
-
-                    </p>
-
-
-                    <small>
-
-                        Add organizer · institute · date · certificate
-
-                    </small>
-
-                </div>
-
-            </article>
-
-
-
-            <article>
-
-                <div class="year">
-                    ADD
-                </div>
-
-
-                <div>
-
-                    <h3>
-
-                        Workshop Title
-
-                    </h3>
-
-
-                    <p>
-
-                        Add the technical scope and your
-                        hands-on contribution here.
-
-                    </p>
-
-
-                    <small>
-
-                        Organizer · Institute · Date
-
-                    </small>
-
-                </div>
-
-            </article>
-
-
-        </div>
+      <p>
+        Technical workshops and hands-on learning experiences.
+      </p>
 
     </div>
 
-</section>
 
+    <div class="timeline">
+
+      <article class="event">
+
+        <div class="year">2026</div>
+
+        <div>
+
+          <h3>
+            Physics-Informed Neural Networks Workshop
+          </h3>
+
+          <p>
+            Hands-on work with neural networks, PINNs,
+            automatic differentiation, sparse-data learning
+            and PDE-constrained training using Python and Jupyter.
+          </p>
+
+          <small>
+            Add organizer · institute · date · certificate
+          </small>
+
+        </div>
+
+      </article>
+
+
+      <article class="event">
+
+        <div class="year">ADD</div>
+
+        <div>
+
+          <h3>
+            Workshop Title
+          </h3>
+
+          <p>
+            Add the technical scope and your hands-on contribution here.
+          </p>
+
+          <small>
+            Organizer · Institute · Date
+          </small>
+
+        </div>
+
+      </article>
+
+    </div>
+
+  </div>
+
+</section>
 
 
 <!-- =========================================================
      CONFERENCES
 ========================================================= -->
 
-<section
-    id="conferences"
-    class="section tinted">
+<section id="conferences" class="section">
 
+  <div class="container">
 
-    <div class="container">
+    <div class="heading">
 
+      <div>
+        <p class="eyebrow">06 / DISSEMINATION</p>
+        <h2>Conference Presentations</h2>
+      </div>
 
-        <div class="section-heading">
-
-
-            <div>
-
-                <p class="eyebrow">
-
-                    05 / DISSEMINATION
-
-                </p>
-
-
-                <h2>
-
-                    Conference Presentations
-
-                </h2>
-
-            </div>
-
-
-            <p>
-
-                Research communication and technical
-                presentations.
-
-            </p>
-
-        </div>
-
-
-
-        <div class="conference-grid">
-
-
-            <article class="conference-card">
-
-
-                <div class="conf-type">
-
-                    ORAL / POSTER
-
-                </div>
-
-
-                <h3>
-
-                    Add Conference
-                    Presentation Title
-
-                </h3>
-
-
-                <p>
-
-                    Add a concise description of the research
-                    problem, methodology and key result
-                    presented.
-
-                </p>
-
-
-                <b>
-
-                    Conference Name
-
-                </b>
-
-
-                <span>
-
-                    Venue · Year
-
-                </span>
-
-
-            </article>
-
-
-
-            <article class="conference-card">
-
-
-                <div class="conf-type">
-
-                    ORAL / POSTER
-
-                </div>
-
-
-                <h3>
-
-                    Add Second
-                    Presentation
-
-                </h3>
-
-
-                <p>
-
-                    Add the presentation details,
-                    your role and a short description.
-
-                </p>
-
-
-                <b>
-
-                    Conference Name
-
-                </b>
-
-
-                <span>
-
-                    Venue · Year
-
-                </span>
-
-
-            </article>
-
-
-        </div>
+      <p>
+        Research communication and technical presentations.
+      </p>
 
     </div>
 
-</section>
 
+    <div class="conf-grid">
+
+      <article class="conf">
+
+        <div class="conf-type">
+          ORAL / POSTER
+        </div>
+
+        <h3>
+          Add Conference Presentation Title
+        </h3>
+
+        <p>
+          Add a concise description of the research problem,
+          methodology and key result presented.
+        </p>
+
+        <b>Conference Name</b>
+
+        <span>
+          Venue · Year
+        </span>
+
+      </article>
+
+
+      <article class="conf">
+
+        <div class="conf-type">
+          ORAL / POSTER
+        </div>
+
+        <h3>
+          Add Second Presentation
+        </h3>
+
+        <p>
+          Add the presentation details, your role and a
+          short description.
+        </p>
+
+        <b>Conference Name</b>
+
+        <span>
+          Venue · Year
+        </span>
+
+      </article>
+
+    </div>
+
+  </div>
+
+</section>
 
 
 <!-- =========================================================
      SKILLS
 ========================================================= -->
 
-<section
-    id="skills"
-    class="section">
+<section id="skills" class="section tinted">
 
+  <div class="container">
 
-    <div class="container">
+    <div class="heading">
 
-
-        <div class="section-heading">
-
-
-            <div>
-
-                <p class="eyebrow">
-
-                    06 / TOOLKIT
-
-                </p>
-
-
-                <h2>
-
-                    Technical Skills
-
-                </h2>
-
-            </div>
-
-
-        </div>
-
-
-
-        <div class="skills-grid">
-
-
-            <div>
-
-                <h3>
-                    Computational Mechanics
-                </h3>
-
-
-                <p>
-
-                    Finite Element Analysis ·
-                    Nonlinear Solid Mechanics ·
-                    Fracture Mechanics ·
-                    Cohesive-Zone Modeling ·
-                    Constitutive Modeling
-
-                </p>
-
-            </div>
-
-
-
-            <div>
-
-                <h3>
-                    Simulation
-                </h3>
-
-
-                <p>
-
-                    Abaqus ·
-                    Static General ·
-                    Dynamic Implicit ·
-                    Dynamic Explicit ·
-                    Contact & Interactions ·
-                    Model Calibration
-
-                </p>
-
-            </div>
-
-
-
-            <div>
-
-                <h3>
-                    Scientific Computing
-                </h3>
-
-
-                <p>
-
-                    Python ·
-                    PyTorch ·
-                    NumPy ·
-                    Matplotlib ·
-                    MATLAB ·
-                    Jupyter ·
-                    Numerical Methods
-
-                </p>
-
-            </div>
-
-
-
-            <div>
-
-                <h3>
-                    Engineering & Experiment
-                </h3>
-
-
-                <p>
-
-                    SolidWorks ·
-                    Peel Testing ·
-                    Fixture Design ·
-                    Camera Calibration ·
-                    Image-Based Measurement
-
-                </p>
-
-            </div>
-
-
-
-            <div>
-
-                <h3>
-                    Machine Learning
-                </h3>
-
-
-                <p>
-
-                    Neural Networks ·
-                    Physics-Informed Neural Networks ·
-                    Automatic Differentiation ·
-                    Scientific Machine Learning
-
-                </p>
-
-            </div>
-
-
-
-            <div>
-
-                <h3>
-                    Fracture & Interfaces
-                </h3>
-
-
-                <p>
-
-                    Traction–Separation Laws ·
-                    Damage Evolution ·
-                    Interface Debonding ·
-                    Crack Propagation ·
-                    Curvature Effects
-
-                </p>
-
-            </div>
-
-
-        </div>
+      <div>
+        <p class="eyebrow">07 / TOOLKIT</p>
+        <h2>Technical Skills</h2>
+      </div>
 
     </div>
 
-</section>
 
+    <div class="skills">
+
+      <div class="skill">
+
+        <h3>
+          Computational Mechanics
+        </h3>
+
+        <p>
+          Finite Element Analysis · Nonlinear Solid Mechanics ·
+          Fracture Mechanics · Cohesive-Zone Modeling ·
+          Constitutive Modeling
+        </p>
+
+      </div>
+
+
+      <div class="skill">
+
+        <h3>
+          Simulation
+        </h3>
+
+        <p>
+          Abaqus · Static General · Dynamic Implicit ·
+          Dynamic Explicit · Contact & Interactions ·
+          Model Calibration
+        </p>
+
+      </div>
+
+
+      <div class="skill">
+
+        <h3>
+          Scientific Computing
+        </h3>
+
+        <p>
+          Python · PyTorch · NumPy · Matplotlib · MATLAB ·
+          Jupyter · Numerical Methods
+        </p>
+
+      </div>
+
+
+      <div class="skill">
+
+        <h3>
+          Engineering & Experiment
+        </h3>
+
+        <p>
+          SolidWorks · Peel Testing · Fixture Design ·
+          Camera Calibration · Image-Based Measurement
+        </p>
+
+      </div>
+
+
+      <div class="skill">
+
+        <h3>
+          Machine Learning
+        </h3>
+
+        <p>
+          Neural Networks · Physics-Informed Neural Networks ·
+          Automatic Differentiation · Scientific Machine Learning
+        </p>
+
+      </div>
+
+
+      <div class="skill">
+
+        <h3>
+          Fracture & Interfaces
+        </h3>
+
+        <p>
+          Traction–Separation Laws · Damage Evolution ·
+          Interface Debonding · Crack Propagation ·
+          Curvature Effects
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
 
 
 <!-- =========================================================
      CONTACT
 ========================================================= -->
 
-<section
-    id="contact"
-    class="contact">
+<section id="contact" class="contact">
 
+  <div class="container contact-grid">
 
-    <div class="container contact-grid">
+    <div>
 
+      <p class="eyebrow">
+        08 / CONTACT
+      </p>
 
-        <div>
+      <h2>
+        Let's connect.
+      </h2>
 
-            <p class="eyebrow light">
-
-                07 / CONTACT
-
-            </p>
-
-
-            <h2>
-
-                Let's connect.
-
-            </h2>
-
-
-            <p>
-
-                Interested in research and engineering
-                opportunities involving computational mechanics,
-                fracture, FEA, thin films, semiconductor packaging
-                and scientific machine learning.
-
-            </p>
-
-        </div>
-
-
-
-        <div class="contact-box">
-
-
-            <a
-                href="mailto:am24s047@smail.iitm.ac.in">
-
-                am24s047@smail.iitm.ac.in
-
-            </a>
-
-
-            <a
-                href="https://github.com/NishantN-IITM"
-                target="_blank"
-                rel="noreferrer">
-
-                GitHub ↗
-
-            </a>
-
-
-            <a
-                href="YOUR-LINKEDIN-URL"
-                target="_blank"
-                rel="noreferrer">
-
-                LinkedIn ↗
-
-            </a>
-
-
-        </div>
+      <p>
+        Interested in research and engineering opportunities
+        involving computational mechanics, fracture, FEA,
+        thin films, semiconductor packaging and scientific
+        machine learning.
+      </p>
 
     </div>
 
-</section>
 
+    <div class="contact-box">
+
+      <a href="mailto:am24s047@smail.iitm.ac.in">
+        am24s047@smail.iitm.ac.in
+      </a>
+
+      <a href="https://github.com/NishantN-IITM"
+         target="_blank" rel="noreferrer">
+        GitHub ↗
+      </a>
+
+      <a href="YOUR-LINKEDIN-URL"
+         target="_blank" rel="noreferrer">
+        LinkedIn ↗
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
 
 </main>
 
 
-
-<!-- =========================================================
-     FOOTER
-========================================================= -->
-
 <footer>
 
-    <div class="container">
+  <div class="container footer">
 
-        <span>
+    <span>
+      © <span id="year"></span> Nishant Narsale
+    </span>
 
-            © <span id="year"></span>
-            Nishant Narsale
+    <span>
+      Interfacial Fracture Mechanics · Applied Mechanics
+    </span>
 
-        </span>
-
-
-        <span>
-
-            Interfacial Fracture Mechanics
-            · Applied Mechanics
-
-        </span>
-
-    </div>
+  </div>
 
 </footer>
 
 
+<script>
+const body = document.body;
+const theme = document.getElementById("theme");
+const menu = document.getElementById("menu");
 
-<script src="script.js"></script>
+const saved = localStorage.getItem("portfolio-theme");
+if (saved) body.dataset.theme = saved;
 
+theme.addEventListener("click", () => {
+  const next = body.dataset.theme === "dark" ? "light" : "dark";
+  body.dataset.theme = next;
+  localStorage.setItem("portfolio-theme", next);
+});
+
+menu.addEventListener("click", () => {
+  body.classList.toggle("nav-open");
+});
+
+document.querySelectorAll("nav a").forEach(link => {
+  link.addEventListener("click", () => body.classList.remove("nav-open"));
+});
+
+document.getElementById("year").textContent = new Date().getFullYear();
+</script>
 
 </body>
-
 </html>
